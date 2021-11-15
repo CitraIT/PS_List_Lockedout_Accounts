@@ -1,6 +1,6 @@
 <#
-# CITRA IT - EXCELÊNCIA EM TI
-# SCRIPT PARA LISTAR CONTAS DE USUÁRIO ATIVAS MAS BLOQUEADAS NO AD
+# CITRA IT - EXCELÃŠNCIA EM TI
+# SCRIPT PARA LISTAR CONTAS DE USUÃRIO ATIVAS MAS BLOQUEADAS NO AD
 # AUTOR: luciano@citrait.com.br
 # DATA: 15/11/2021
 # EXAMPLO DE USO: Powershell -ExecutionPolicy ByPass -File C:\scripts\PS_List_Lockedout_Accounts.ps1
@@ -15,5 +15,6 @@ if ($? -eq $False)
         Exit
 }else{
 	write-host "Running as admin. procedding"
+	Import-Module ActiveDirectory
 	Get-ADUser -Filter {Enabled -eq $True } -Properties * | ?{$_.LockedOut -eq $True}  | Select Name,SamAccountName | Out-GridView -wait   
 }
