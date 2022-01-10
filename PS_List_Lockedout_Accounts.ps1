@@ -14,7 +14,7 @@ if ($? -eq $False)
 	start-process powershell -verb runas -argumentlist "-ep","bypass","-file",$MyInvocation.MyCommand.Path
         Exit
 }else{
-	write-host "Running as admin. procedding"
+	write-host "Running as admin. proceeding"
 	Import-Module ActiveDirectory
 	Get-ADUser -Filter {Enabled -eq $True } -Properties * | ?{$_.LockedOut -eq $True}  | Select Name,SamAccountName | Out-GridView -wait   
 }
